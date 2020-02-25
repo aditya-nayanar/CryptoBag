@@ -7,9 +7,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.net.Uri;
+import android.widget.TextView;
+import android.util.Log;
 
 public class DetailedActivity extends AppCompatActivity {
-
+private static final String TAG = "DetailedActivity";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,5 +25,11 @@ public class DetailedActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        Intent intent = getIntent();
+        String textToShowString = intent.getStringExtra("message");
+
+        TextView textPlaceholder = findViewById(R.id.detailedText);
+        textPlaceholder.setText(textToShowString);
     }
 }
