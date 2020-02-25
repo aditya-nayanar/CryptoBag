@@ -17,6 +17,12 @@ private static final String TAG = "DetailedActivity";
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detailed);
 
+        Intent intent = getIntent();
+        String textToShowString = intent.getStringExtra("message");
+
+        TextView textPlaceholder = findViewById(R.id.detailedText);
+        textPlaceholder.setText(textToShowString);
+
         Button toVideo = findViewById(R.id.toVideo);
         toVideo.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -26,10 +32,6 @@ private static final String TAG = "DetailedActivity";
             }
         });
 
-        Intent intent = getIntent();
-        String textToShowString = intent.getStringExtra("message");
 
-        TextView textPlaceholder = findViewById(R.id.detailedText);
-        textPlaceholder.setText(textToShowString);
     }
 }
