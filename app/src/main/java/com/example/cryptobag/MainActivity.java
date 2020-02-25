@@ -11,7 +11,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Button toDetailedActivity = (Button) findViewById(R.id.toDetailedActivity);
+    //    Button toDetailedActivity = (Button) findViewById(R.id.toDetailedActivity);
 
     }
 }
