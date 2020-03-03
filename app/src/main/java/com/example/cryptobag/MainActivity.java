@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
         toDetailedActivity.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, DetailedActivity.class);
-                intent.putExtra("coin", "XRP");
+                intent.putExtra("coin", "BTC");
                 startActivity(intent);
             }
         });
