@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
+    private static final String TAG = "MainActivity";
     String textToDisplay = "Here is my text";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,15 +19,11 @@ public class MainActivity extends AppCompatActivity {
         Button toDetailedActivity = findViewById(R.id.toDetailedActivity);
         toDetailedActivity.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, DetailedActivity.class));
-
                 Intent intent = new Intent(MainActivity.this, DetailedActivity.class);
-                intent.putExtra("message", textToDisplay);
+                intent.putExtra("coin", "BCH");
                 startActivity(intent);
             }
         });
-        TextView text = findViewById(R.id.textView);
-        text.setText(textToDisplay);
 
     }
 
