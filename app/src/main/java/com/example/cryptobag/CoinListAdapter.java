@@ -10,16 +10,18 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.LinkedList;
+import java.util.List;
 
 public class CoinListAdapter extends RecyclerView.Adapter<CoinListAdapter.CoinViewHolder> {
 
-    private final LinkedList<String> mWordList;
+    //private final LinkedList<String> mWordList;
+    private final List<Coin> mCoinList;
     private LayoutInflater mInflater;
 
     public CoinListAdapter(Context context,
-                           LinkedList<String> wordList) {
+                           List<Coin> coinList) {
         mInflater = LayoutInflater.from(context);
-        this.mWordList = wordList;
+        this.mCoinList = coinList;
     }
 
     @NonNull
@@ -32,23 +34,34 @@ public class CoinListAdapter extends RecyclerView.Adapter<CoinListAdapter.CoinVi
 
     @Override
     public void onBindViewHolder(@NonNull CoinListAdapter.CoinViewHolder holder, int position) {
-        String mCurrent = mWordList.get(position);
-        holder.coinItemView.setText(mCurrent);
+
+        Coin mCurrent = mCoinList.get(position);
+        String mName = mCurrent.getName();
+        holder.coinName.setText(mName);
+        String mValue = Double.toString(mCurrent.getValue());
+        holder.value.setText("$"+mValue);
+        String mPercentage = Double.toString(mCurrent.getChange1h());
+        holder.percentage.setText(mPercentage+ " %");
     }
 
     @Override
     public int getItemCount() {
-        return mWordList.size();
+        return mCoinList.size();
     }
 
 
     class CoinViewHolder extends RecyclerView.ViewHolder {
-        public final TextView coinItemView;
+        //public final TextView coinItemView;
+        public final TextView coinName;
+        public final TextView value;
+        public final TextView percentage;
         final CoinListAdapter mAdapter;
 
         public CoinViewHolder(View itemView, CoinListAdapter adapter) {
             super(itemView);
-            coinItemView = itemView.findViewById(R.id.word);
+            coinName = itemView.findViewById(R.id.name);
+            value = itemView.findViewById(R.id.value);
+            percentage = itemView.findViewById(R.id.percentage);
             this.mAdapter = adapter;
         }
     }

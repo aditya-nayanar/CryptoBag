@@ -11,11 +11,12 @@ import android.view.View;
 import android.widget.TextView;
 
 import java.util.LinkedList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
     String textToDisplay = "Here is my text";
-    private final LinkedList<String> mWordList = new LinkedList<>();
+    private final List<Coin> mCoinList = Coin.getCoins();
     // Put initial data into the word list.
 
     private RecyclerView currencyList;
@@ -26,14 +27,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        for(int i = 0; i < 20; i++) {
-            mWordList.addLast("Word " + i);
-        }
-
         // Get a handle to the RecyclerView.
         currencyList = findViewById(R.id.coinList);
         // Create an adapter and supply the data to be displayed.
-        cAdapter = new CoinListAdapter(this, mWordList);
+        cAdapter = new CoinListAdapter(this, mCoinList);
         // Connect the adapter with the RecyclerView.
         currencyList.setAdapter(cAdapter);
         // Give the RecyclerView a default layout manager.
