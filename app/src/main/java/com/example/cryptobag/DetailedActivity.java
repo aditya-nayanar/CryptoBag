@@ -11,9 +11,11 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.util.Log;
 import java.util.ArrayList;
+import java.util.List;
 
 public class DetailedActivity extends AppCompatActivity {
 private static final String TAG = "DetailedActivity";
+    private final List<Coin> mCoinList = Coin.getCoins();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,23 +23,25 @@ private static final String TAG = "DetailedActivity";
 
         Intent intent = getIntent();
         String coinAbb = null;
+        Coin coin = null;
         if(intent.getExtras() != null)
 
         {
             Bundle extra = intent.getExtras();
+            coin = mCoinList.get(extra.getInt("pos"));
             coinAbb = extra.getString("coin");
         }
 
         ArrayList<Coin> coins = new ArrayList<Coin>();
         coins = Coin.getCoins();
-        Coin selectedCoin = null;
+        Coin selectedCoin = coin;
 
-        for(int i=0;i<coins.size();i++){
+ /*       for(int i=0;i<coins.size();i++){
             if(coins.get(i).getSymbol().equalsIgnoreCase(coinAbb)){
                 selectedCoin = coins.get(i);
             }
         }//end the for statement
-
+*/
         TextView name = findViewById(R.id.name);
         name.setText(selectedCoin.getName());
         TextView symbol = findViewById(R.id.symbol);

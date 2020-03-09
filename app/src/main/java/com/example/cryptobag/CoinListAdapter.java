@@ -1,6 +1,7 @@
 package com.example.cryptobag;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,11 +13,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.LinkedList;
 import java.util.List;
 
-public class CoinListAdapter extends RecyclerView.Adapter<CoinListAdapter.CoinViewHolder> {
+public class CoinListAdapter extends RecyclerView.Adapter<CoinListAdapter.CoinViewHolder>{
 
     //private final LinkedList<String> mWordList;
     private final List<Coin> mCoinList;
     private LayoutInflater mInflater;
+    private Context context;
 
     public CoinListAdapter(Context context,
                            List<Coin> coinList) {
@@ -50,7 +52,7 @@ public class CoinListAdapter extends RecyclerView.Adapter<CoinListAdapter.CoinVi
     }
 
 
-    class CoinViewHolder extends RecyclerView.ViewHolder {
+    class CoinViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         //public final TextView coinItemView;
         public final TextView coinName;
         public final TextView value;
@@ -63,6 +65,17 @@ public class CoinListAdapter extends RecyclerView.Adapter<CoinListAdapter.CoinVi
             value = itemView.findViewById(R.id.value);
             percentage = itemView.findViewById(R.id.percentage);
             this.mAdapter = adapter;
+            itemView.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View v) {
+            int mPosition = getLayoutPosition();
+            Coin coin = mCoinList.get(mPosition);
+
+            Intent intent = new Intent(v.getContext(), DetailedActivity.class);
+            intent.putExtra("pos", mPosition);
+            v.getContext().startActivity(intent);
         }
     }
 }
