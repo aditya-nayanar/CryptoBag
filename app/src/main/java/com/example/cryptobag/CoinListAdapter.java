@@ -1,23 +1,31 @@
 package com.example.cryptobag;
 
+import android.app.Activity;
+import android.app.Fragment;
+import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.LinkedList;
 import java.util.List;
 
 public class CoinListAdapter extends RecyclerView.Adapter<CoinListAdapter.CoinViewHolder>{
-
+    private static final String TAG = "CoinListAdapter";
     //private final LinkedList<String> mWordList;
     private final List<Coin> mCoinList;
     private LayoutInflater mInflater;
+    boolean mIsDualPane;
     private Context context;
 
     public CoinListAdapter(Context context,
@@ -71,11 +79,47 @@ public class CoinListAdapter extends RecyclerView.Adapter<CoinListAdapter.CoinVi
         @Override
         public void onClick(View v) {
             int mPosition = getLayoutPosition();
-            Coin coin = mCoinList.get(mPosition);
 
-            Intent intent = new Intent(v.getContext(), DetailedActivity.class);
-            intent.putExtra("pos", mPosition);
-            v.getContext().startActivity(intent);
+            View articleView = v.getRootView().findViewById(R.id.tablet_coinDetails);
+            //Log.d(TAG, "The view resulted in:" + Boolean.toString(articleView != null));
+           // Log.d(TAG, Boolean.toString(articleView.getVisibility() == View.VISIBLE));
+            mIsDualPane = articleView != null &&
+                    articleView.getVisibility() == View.VISIBLE;
+            Log.d(TAG, Boolean.toString(mIsDualPane));
+            if(mIsDualPane){
+            DetailFragment fragment = new DetailFragment();
+            Bundle bundle = new Bundle();
+            bundle.putInt("pos", mPosition);
+            fragment.setArguments(bundle);
+                ((FragmentActivity) v.getContext()).getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.tablet_coinDetails, fragment)
+                        .commit();
+
+                /*FragmentManager fragman = ((Activity)context).getFragmentManager();
+                FragmentTransaction ft= fragman.beginTransaction();
+                ft.replace(R.id.tablet_coinDetails, fragment);
+*/
+            }else {
+                Log.d(TAG, "Launching Intent");
+                Intent intent = new Intent(v.getContext(), DetailedActivity.class);
+                intent.putExtra("pos", mPosition);
+                v.getContext().startActivity(intent);
+            }
         }
     }
+
+ //   public void onCoinSelected(int index) {
+ //       mArtIndex = index;
+ //       if (mIsDualPane) {
+  //          /* display article on the right pane */
+  //          mArticleFragment.displayArticle(mCurrentCat.getArticle(index));
+  //      } else {
+  //          /* start a separate activity */
+  //          Intent intent = new Intent(this, ArticleActivity.class);
+  //          intent.putExtra("catIndex", mCatIndex);
+  //          intent.putExtra("artIndex", index);
+  //          startActivity(intent);
+  //      }
+  //  }
+
 }

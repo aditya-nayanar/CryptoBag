@@ -22,26 +22,16 @@ private static final String TAG = "DetailedActivity";
         setContentView(R.layout.activity_detailed);
 
         Intent intent = getIntent();
-        String coinAbb = null;
         Coin coin = null;
         if(intent.getExtras() != null)
 
         {
             Bundle extra = intent.getExtras();
             coin = mCoinList.get(extra.getInt("pos"));
-            coinAbb = extra.getString("coin");
         }
 
-        ArrayList<Coin> coins = new ArrayList<Coin>();
-        coins = Coin.getCoins();
         Coin selectedCoin = coin;
 
- /*       for(int i=0;i<coins.size();i++){
-            if(coins.get(i).getSymbol().equalsIgnoreCase(coinAbb)){
-                selectedCoin = coins.get(i);
-            }
-        }//end the for statement
-*/
         TextView name = findViewById(R.id.name);
         name.setText(selectedCoin.getName());
         TextView symbol = findViewById(R.id.symbol);

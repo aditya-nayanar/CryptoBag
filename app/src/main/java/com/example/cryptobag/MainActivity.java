@@ -29,22 +29,14 @@ public class MainActivity extends AppCompatActivity {
 
         // Get a handle to the RecyclerView.
         currencyList = findViewById(R.id.coinList);
-        // Create an adapter and supply the data to be displayed.
-        cAdapter = new CoinListAdapter(this, mCoinList);
-        // Connect the adapter with the RecyclerView.
-        currencyList.setAdapter(cAdapter);
-        // Give the RecyclerView a default layout manager.
-        currencyList.setLayoutManager(new LinearLayoutManager(this));
-
-        /*Button toDetailedActivity = findViewById(R.id.toDetailedActivity);
-        toDetailedActivity.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, DetailedActivity.class);
-                intent.putExtra("coin", "BCH");
-                startActivity(intent);
-            }
-        });
-*/
+        if(currencyList != null) {
+            // Create an adapter and supply the data to be displayed.
+            cAdapter = new CoinListAdapter(this, mCoinList);
+            // Connect the adapter with the RecyclerView.
+            currencyList.setAdapter(cAdapter);
+            // Give the RecyclerView a default layout manager.
+            currencyList.setLayoutManager(new LinearLayoutManager(this));
+        }
     }
 
 
