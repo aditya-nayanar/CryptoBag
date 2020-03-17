@@ -17,14 +17,15 @@
 
     <ScrollView
         android:id="@+id/tablet_coinDetails"
-        android:layout_width="927dp"
+        android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="#F1EFEF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/coinList"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0">
 
 
     </ScrollView>
