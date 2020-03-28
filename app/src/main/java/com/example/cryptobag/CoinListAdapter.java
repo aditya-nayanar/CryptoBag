@@ -23,13 +23,13 @@ import java.util.List;
 public class CoinListAdapter extends RecyclerView.Adapter<CoinListAdapter.CoinViewHolder>{
     private static final String TAG = "CoinListAdapter";
     //private final LinkedList<String> mWordList;
-    private final List<Coin> mCoinList;
+    private final List<com.example.cryptobag.Entities.Coin> mCoinList;
     private LayoutInflater mInflater;
     boolean mIsDualPane;
     private Context context;
 
     public CoinListAdapter(Context context,
-                           List<Coin> coinList) {
+                           List<com.example.cryptobag.Entities.Coin> coinList) {
         mInflater = LayoutInflater.from(context);
         this.mCoinList = coinList;
     }
@@ -45,12 +45,12 @@ public class CoinListAdapter extends RecyclerView.Adapter<CoinListAdapter.CoinVi
     @Override
     public void onBindViewHolder(@NonNull CoinListAdapter.CoinViewHolder holder, int position) {
 
-        Coin mCurrent = mCoinList.get(position);
+        com.example.cryptobag.Entities.Coin mCurrent = mCoinList.get(position);
         String mName = mCurrent.getName();
         holder.coinName.setText(mName);
-        String mValue = Double.toString(mCurrent.getValue());
+        String mValue = mCurrent.getPriceUsd();
         holder.value.setText("$"+mValue);
-        String mPercentage = Double.toString(mCurrent.getChange1h());
+        String mPercentage = mCurrent.getPercentChange1h();
         holder.percentage.setText(mPercentage+ " %");
     }
 

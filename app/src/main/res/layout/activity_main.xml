@@ -12,6 +12,6 @@
         android:layout_height="match_parent"
         android:background="#F1EFEF"
         tools:layout_editor_absoluteX="-7dp"
-        tools:layout_editor_absoluteY="2dp" />
+        tools:layout_editor_absoluteY="0dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

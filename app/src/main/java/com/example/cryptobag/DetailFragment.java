@@ -17,42 +17,22 @@ import android.widget.TextView;
 
 import java.util.List;
 
-
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link DetailFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class DetailFragment extends Fragment {
     private static final String TAG = "DetailFragment";
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-    private final List<Coin> mCoinList = Coin.getCoins();
-    Coin coin;
-    // TODO: Rename and change types of parameters
+    private final List<com.example.cryptobag.Entities.Coin> mCoinList = com.example.cryptobag.Entities.CoinLoreResponse.getCoinList();
+    com.example.cryptobag.Entities.Coin coin;
     private String mParam1;
     private String mParam2;
 
     public DetailFragment() {
-        // Required empty public constructor
+
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment DetailFragment.
-     */
-    // TODO: Rename and change types and number of parameters
     public static DetailFragment newInstance(String param1, String param2) {
         DetailFragment fragment = new DetailFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
     }
@@ -86,24 +66,24 @@ public class DetailFragment extends Fragment {
         coin = mCoinList.get(extra.getInt("pos"));
         Log.d(TAG, "Check if coin exists: " + Boolean.toString(coin!=null));
 
-        Coin selectedCoin = coin;
+        com.example.cryptobag.Entities.Coin selectedCoin = coin;
         View view = getView();
         TextView name = view.findViewById(R.id.name);
         name.setText(selectedCoin.getName());
         TextView symbol = view.findViewById(R.id.symbol);
         symbol.setText(selectedCoin.getSymbol());
         TextView value = view.findViewById(R.id.value);
-        value.setText(Double.toString(selectedCoin.getValue()));
+        value.setText(selectedCoin.getPriceUsd());
         TextView change1h = view.findViewById(R.id.change1h);
-        change1h.setText(Double.toString(selectedCoin.getChange1h()));
+        change1h.setText(selectedCoin.getPercentChange1h());
         TextView change24h = view.findViewById(R.id.change24h);
-        change24h.setText(Double.toString(selectedCoin.getChange24h()));
+        change24h.setText(selectedCoin.getPercentChange24h());
         TextView change7d = view.findViewById(R.id.change7d);
-        change7d.setText(Double.toString(selectedCoin.getChange7d()));
+        change7d.setText(selectedCoin.getPercentChange7d());
         TextView marketcap = view.findViewById(R.id.marketcap);
-        marketcap.setText(Double.toString(selectedCoin.getMarketcap()));
+        marketcap.setText(selectedCoin.getMarketCapUsd());
         TextView volume = view.findViewById(R.id.volume);
-        volume.setText(Double.toString(selectedCoin.getVolume()));
+        volume.setText(Double.toString(selectedCoin.getVolume24()));
         final String searchvalue = selectedCoin.getName();
 
         ImageButton search = view.findViewById(R.id.searchButton);
