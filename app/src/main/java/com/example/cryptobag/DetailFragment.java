@@ -15,13 +15,16 @@ import android.widget.ImageButton;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
+import com.example.cryptobag.Entities.Coin;
+import com.example.cryptobag.Entities.CoinLoreResponse;
+
 import java.util.List;
 
 public class DetailFragment extends Fragment {
     private static final String TAG = "DetailFragment";
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-    private final List<com.example.cryptobag.Entities.Coin> mCoinList = com.example.cryptobag.Entities.CoinLoreResponse.getCoinList();
+    private final List<Coin> mCoinList = CoinLoreResponse.getCoinList();
     com.example.cryptobag.Entities.Coin coin;
     private String mParam1;
     private String mParam2;
@@ -66,7 +69,7 @@ public class DetailFragment extends Fragment {
         coin = mCoinList.get(extra.getInt("pos"));
         Log.d(TAG, "Check if coin exists: " + Boolean.toString(coin!=null));
 
-        com.example.cryptobag.Entities.Coin selectedCoin = coin;
+        Coin selectedCoin = coin;
         View view = getView();
         TextView name = view.findViewById(R.id.name);
         name.setText(selectedCoin.getName());

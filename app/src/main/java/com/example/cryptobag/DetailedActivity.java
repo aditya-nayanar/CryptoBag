@@ -20,8 +20,7 @@ import java.util.List;
 
 public class DetailedActivity extends AppCompatActivity {
 private static final String TAG = "DetailedActivity";
-    private final List<Coin> mCoinList = Coin.getCoins();
-    Context context;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

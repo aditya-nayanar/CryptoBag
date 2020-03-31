@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
+import com.example.cryptobag.Entities.Coin;
 import com.example.cryptobag.Entities.CoinLoreResponse;
 
 import java.util.LinkedList;
@@ -18,11 +19,8 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
-    String textToDisplay = "Here is my text";
 
-    CoinLoreResponse clr = new CoinLoreResponse();
-    List<com.example.cryptobag.Entities.Coin> newCoinList = com.example.cryptobag.Entities.CoinLoreResponse.getCoinList();
-    List<Coin> mCoinList = Coin.getCoins();
+    List<Coin> newCoinList = CoinLoreResponse.getCoinList();
 
     private RecyclerView currencyList;
     private CoinListAdapter cAdapter;

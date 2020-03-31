@@ -17,19 +17,21 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.cryptobag.Entities.Coin;
+
 import java.util.LinkedList;
 import java.util.List;
 
 public class CoinListAdapter extends RecyclerView.Adapter<CoinListAdapter.CoinViewHolder>{
     private static final String TAG = "CoinListAdapter";
     //private final LinkedList<String> mWordList;
-    private final List<com.example.cryptobag.Entities.Coin> mCoinList;
+    private final List<Coin> mCoinList;
     private LayoutInflater mInflater;
     boolean mIsDualPane;
     private Context context;
 
     public CoinListAdapter(Context context,
-                           List<com.example.cryptobag.Entities.Coin> coinList) {
+                           List<Coin> coinList) {
         mInflater = LayoutInflater.from(context);
         this.mCoinList = coinList;
     }
@@ -45,7 +47,7 @@ public class CoinListAdapter extends RecyclerView.Adapter<CoinListAdapter.CoinVi
     @Override
     public void onBindViewHolder(@NonNull CoinListAdapter.CoinViewHolder holder, int position) {
 
-        com.example.cryptobag.Entities.Coin mCurrent = mCoinList.get(position);
+        Coin mCurrent = mCoinList.get(position);
         String mName = mCurrent.getName();
         holder.coinName.setText(mName);
         String mValue = mCurrent.getPriceUsd();
@@ -107,19 +109,5 @@ public class CoinListAdapter extends RecyclerView.Adapter<CoinListAdapter.CoinVi
             }
         }
     }
-
- //   public void onCoinSelected(int index) {
- //       mArtIndex = index;
- //       if (mIsDualPane) {
-  //          /* display article on the right pane */
-  //          mArticleFragment.displayArticle(mCurrentCat.getArticle(index));
-  //      } else {
-  //          /* start a separate activity */
-  //          Intent intent = new Intent(this, ArticleActivity.class);
-  //          intent.putExtra("catIndex", mCatIndex);
-  //          intent.putExtra("artIndex", index);
-  //          startActivity(intent);
-  //      }
-  //  }
 
 }
