@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -25,7 +26,7 @@ import java.util.List;
 public class CoinListAdapter extends RecyclerView.Adapter<CoinListAdapter.CoinViewHolder>{
     private static final String TAG = "CoinListAdapter";
     //private final LinkedList<String> mWordList;
-    private final List<Coin> mCoinList;
+    private  List<Coin> mCoinList;
     private LayoutInflater mInflater;
     boolean mIsDualPane;
     private Context context;
@@ -61,6 +62,11 @@ public class CoinListAdapter extends RecyclerView.Adapter<CoinListAdapter.CoinVi
         return mCoinList.size();
     }
 
+    public void setData(List<Coin> coins){
+        mCoinList.clear();
+        this.mCoinList = coins;
+    }
+
 
     class CoinViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         //public final TextView coinItemView;
@@ -81,10 +87,8 @@ public class CoinListAdapter extends RecyclerView.Adapter<CoinListAdapter.CoinVi
         @Override
         public void onClick(View v) {
             int mPosition = getLayoutPosition();
-
+            Log.d(TAG, "Launch ONCLICK");
             View articleView = v.getRootView().findViewById(R.id.tablet_coinDetails);
-            //Log.d(TAG, "The view resulted in:" + Boolean.toString(articleView != null));
-           // Log.d(TAG, Boolean.toString(articleView.getVisibility() == View.VISIBLE));
             mIsDualPane = articleView != null &&
                     articleView.getVisibility() == View.VISIBLE;
             Log.d(TAG, Boolean.toString(mIsDualPane));
@@ -96,11 +100,6 @@ public class CoinListAdapter extends RecyclerView.Adapter<CoinListAdapter.CoinVi
                 ((FragmentActivity) v.getContext()).getSupportFragmentManager().beginTransaction()
                         .replace(R.id.tablet_coinDetails, fragment)
                         .commit();
-
-                /*FragmentManager fragman = ((Activity)context).getFragmentManager();
-                FragmentTransaction ft= fragman.beginTransaction();
-                ft.replace(R.id.tablet_coinDetails, fragment);
-*/
             }else {
                 Log.d(TAG, "Launching Intent");
                 Intent intent = new Intent(v.getContext(), DetailedActivity.class);
