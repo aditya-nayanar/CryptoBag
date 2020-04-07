@@ -4,7 +4,9 @@ package com.example.cryptobag.Entities;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Coin {
+import java.io.Serializable;
+
+public class Coin implements Serializable {
 
     @SerializedName("id")
     @Expose

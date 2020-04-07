@@ -87,6 +87,7 @@ public class CoinListAdapter extends RecyclerView.Adapter<CoinListAdapter.CoinVi
         @Override
         public void onClick(View v) {
             int mPosition = getLayoutPosition();
+            Coin coin = mCoinList.get(mPosition);
             Log.d(TAG, "Launch ONCLICK");
             View articleView = v.getRootView().findViewById(R.id.tablet_coinDetails);
             mIsDualPane = articleView != null &&
@@ -95,7 +96,7 @@ public class CoinListAdapter extends RecyclerView.Adapter<CoinListAdapter.CoinVi
             if(mIsDualPane){
             DetailFragment fragment = new DetailFragment();
             Bundle bundle = new Bundle();
-            bundle.putInt("pos", mPosition);
+            bundle.putSerializable("pos", coin);
             fragment.setArguments(bundle);
                 ((FragmentActivity) v.getContext()).getSupportFragmentManager().beginTransaction()
                         .replace(R.id.tablet_coinDetails, fragment)
@@ -103,7 +104,7 @@ public class CoinListAdapter extends RecyclerView.Adapter<CoinListAdapter.CoinVi
             }else {
                 Log.d(TAG, "Launching Intent");
                 Intent intent = new Intent(v.getContext(), DetailedActivity.class);
-                intent.putExtra("pos", mPosition);
+                intent.putExtra("pos", coin);
                 v.getContext().startActivity(intent);
             }
         }

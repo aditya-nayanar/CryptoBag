@@ -66,7 +66,7 @@ public class DetailFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
 
         Bundle extra = getArguments();
-        coin = mCoinList.get(extra.getInt("pos"));
+        coin = (Coin) extra.getSerializable("pos");
         Log.d(TAG, "Check if coin exists: " + Boolean.toString(coin!=null));
 
         Coin selectedCoin = coin;

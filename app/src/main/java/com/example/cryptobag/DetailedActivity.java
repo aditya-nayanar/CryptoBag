@@ -15,6 +15,9 @@ import android.net.Uri;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.util.Log;
+
+import com.example.cryptobag.Entities.Coin;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,17 +30,17 @@ private static final String TAG = "DetailedActivity";
         setContentView(R.layout.activity_detailed);
 
         Intent intent = getIntent();
-        int mPosition = 0;
+        Coin coin = new Coin();
         if(intent.getExtras() != null)
 
         {
             Bundle extra = intent.getExtras();
-            mPosition = extra.getInt("pos");
+            coin= (Coin) extra.getSerializable("pos");
         }
 
         DetailFragment fragment = new DetailFragment();
         Bundle bundle = new Bundle();
-        bundle.putInt("pos", mPosition);
+        bundle.putSerializable("pos", coin);
         fragment.setArguments(bundle);
         FragmentManager myManager = getSupportFragmentManager();
         FragmentTransaction myTransaction = myManager.beginTransaction();
