@@ -1,13 +1,23 @@
 
 package com.example.cryptobag.Entities;
 
+import androidx.annotation.NonNull;
+import androidx.room.PrimaryKey;
+import androidx.annotation.NonNull;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
 
+@Entity
 public class Coin implements Serializable {
-
+    @PrimaryKey
+    @NonNull
     @SerializedName("id")
     @Expose
     private String id;
